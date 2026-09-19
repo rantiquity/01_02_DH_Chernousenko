@@ -1,4 +1,4 @@
-#install.packages("gutenbergr")
+install.packages("gutenbergr")
 library(gutenbergr)
 library(tidyverse)
 
@@ -16,10 +16,10 @@ my_data <- works |>
 # (2) Используйте функцию separate(), чтобы разделить 
 # столбец с именем и фамилией на два новых: author, name. 
 # Удалите столбец name
-my_data2 <- my_data |> tibble(x=my_data$author) |> 
+my_data2 <- my_data |>
   # ваш код здесь
-  separate(x, c('author', 'name')) |>
-  select(-c(name))
+  separate(author, c('author', 'name'), sep=',') |>
+  select(-name)
 
 
 # (3) Используйте group_by() и summarise(), чтобы узнать,
@@ -27,7 +27,5 @@ my_data2 <- my_data |> tibble(x=my_data$author) |>
 # новый столбец должен называться n, не делайте сортировку 
 my_data3 <- my_data2 |>
   # ваш код здесь
-  filter(author %in% c('Shakespeare', 'Marlowe')) |> 
   group_by(author) |> 
   summarise(n=n())
-
