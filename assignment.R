@@ -10,8 +10,7 @@ works <- gutenberg_works()
 my_data <- works |> 
   # ваш код здесь
   filter(gutenberg_author_id %in% c(65, 410)) |> 
-  select(author, title) |> 
-  print()
+  select(author, title)
 
 
 # (2) Используйте функцию separate(), чтобы разделить 
@@ -20,8 +19,7 @@ my_data <- works |>
 my_data2 <- my_data |> tibble(x=my_data$author) |> 
   # ваш код здесь
   separate(x, c('author', 'name')) |>
-  select(-c(name)) |> 
-  print()
+  select(-c(name))
 
 
 # (3) Используйте group_by() и summarise(), чтобы узнать,
@@ -31,5 +29,5 @@ my_data3 <- my_data2 |>
   # ваш код здесь
   filter(author %in% c('Shakespeare', 'Marlowe')) |> 
   group_by(author) |> 
-  summarise(n=n()) |> 
-  print()
+  summarise(n=n())
+
